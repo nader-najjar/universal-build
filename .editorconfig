@@ -1,0 +1,51 @@
+; EditorConfig: shared editor settings across IDEs (IntelliJ, PyCharm, WebStorm, VS Code, etc.)
+; Without this file, IDE defaults will conflict with ESLint/Checkstyle/etc...
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.nix]
+indent_style = space
+indent_size = 2
+
+[*.java]
+indent_style = space
+indent_size = 4
+
+[*.py]
+indent_style = space
+indent_size = 4
+
+[{*.bzl,*.bazel}]
+indent_style = space
+indent_size = 4
+
+[{*.js,*.mjs,*.cjs,*.jsx,*.ts,*.mts,*.cts,*.tsx}]
+indent_style = space
+indent_size = 2
+
+[*.json]
+indent_style = space
+indent_size = 2
+
+[*.yml]
+indent_style = space
+indent_size = 2
+
+[*.yaml]
+indent_style = space
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.sh]
+indent_style = space
+indent_size = 2
