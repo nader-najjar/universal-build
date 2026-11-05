@@ -1,0 +1,99 @@
+# Shared across all repositories.
+# Root output directories below are reserved for generated files.
+
+# Operating systems and editor temporary files
+.DS_Store
+._*
+__MACOSX/
+Thumbs.db
+[Dd]esktop.ini
+.Trash-*/
+*~
+*.swp
+*.swo
+
+# Local environment and IDE state
+.env
+.env.local
+.env.*.local
+.direnv/
+.vscode/
+.vs/
+**/xcuserdata/
+**/.idea/**/workspace.xml
+**/.idea/**/tasks.xml
+**/.idea/**/shelf/
+*.iws
+
+# Dependencies and tool caches
+node_modules/
+.pnpm-store/
+.npm/
+.venv/
+__pypackages__/
+__pycache__/
+*.py[co]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.gradle/
+.kotlin/
+.dart_tool/
+.build/
+.terraform/
+CMakeFiles/
+CMakeCache.txt
+CMakeUserPresets.json
+cmake-build-*/
+*.tsbuildinfo
+.eslintcache
+.stylelintcache
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+.vite/
+.turbo/
+
+# Generated root outputs
+/build/
+/dist/
+/target/
+/bin/
+/obj/
+/out/
+/artifacts/
+/release/
+/coverage/
+/htmlcov/
+/bazel-*
+
+# Test and diagnostic state
+.coverage
+.coverage.*
+.nyc_output/
+.ipynb_checkpoints/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+hs_err_pid*
+replay_pid*
+rustc-ice-*.txt
+
+# Local Terraform state, not dependency lockfiles
+*.tfstate
+*.tfstate.*
+.terraform.tfstate.lock.info
+
+# Local runtime staging
+.lock/
+/.tmp/
+/.source-dump/
+
+# Nix build output links
+/result
+/result-*
