@@ -138,16 +138,17 @@ validate_idiomatic_artifacts() {
 ###############################################################################
 
 build_and_copy_runtime() {
-  local runtime_store_path
-  runtime_store_path="$(nix \
+  local runtime_package_link="$PROJECT_DIRECTORY/build/runtime-package"
+
+  nix \
     --extra-experimental-features 'nix-command flakes' \
     build \
     --no-update-lock-file \
-    --no-link \
-    --print-out-paths \
-    "$PROJECT_DIRECTORY#runtime")"
+    --out-link "$runtime_package_link" \
+    "$PROJECT_DIRECTORY#runtime"
 
-  local execution_script="$runtime_store_path/bin/execute"
+  local execution_script
+  execution_script="$(readlink -f -- "$runtime_package_link")/bin/execute"
   [[ -f "$execution_script" && -x "$execution_script" ]] ||
     fail "The runtime package must provide executable bin/execute."
 
@@ -156,9 +157,10 @@ build_and_copy_runtime() {
     copy \
     --no-check-sigs \
     --to "$PROJECT_DIRECTORY/build/release/runtime-artifacts" \
-    "$runtime_store_path"
+    "$runtime_package_link"
 
   ln -s -- "$execution_script" "$PROJECT_DIRECTORY/build/release/execution-script-symlink"
+  rm -- "$runtime_package_link"
 }
 
 copy_dockerfile() {
