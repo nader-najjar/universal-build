@@ -149,9 +149,9 @@ build_and_copy_runtime() {
     "$PROJECT_DIRECTORY#runtime"
 
   local execution_script
-  execution_script="$(readlink -f -- "$runtime_package_link")/bin/ignite"
+  execution_script="$(readlink -f -- "$runtime_package_link")/bin/execute"
   [[ -f "$execution_script" && -x "$execution_script" ]] ||
-    fail "The runtime package must provide executable bin/ignite."
+    fail "The runtime package must provide executable bin/execute."
 
   nix \
     --extra-experimental-features 'nix-command flakes' \
