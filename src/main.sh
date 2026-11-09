@@ -139,7 +139,6 @@ validate_idiomatic_artifacts() {
 
 build_and_copy_runtime() {
   local runtime_package_link="$PROJECT_DIRECTORY/build/runtime-package"
-  local execution_script_symlink="$PROJECT_DIRECTORY/build/release/execution-script-symlink"
 
   nix \
     --extra-experimental-features 'nix-command flakes' \
@@ -160,7 +159,7 @@ build_and_copy_runtime() {
     --to "$PROJECT_DIRECTORY/build/release/runtime-artifacts" \
     "$runtime_package_link"
 
-  ln -s -- "$execution_script" "$execution_script_symlink"
+  ln -s -- "$execution_script" "$PROJECT_DIRECTORY/build/release/execution-script-symlink"
 }
 
 copy_dockerfile() {
