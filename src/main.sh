@@ -138,16 +138,19 @@ validate_idiomatic_artifacts() {
 ###############################################################################
 
 build_and_copy_runtime() {
-  local ignite_symlink="$PROJECT_DIRECTORY/build/release/symlink-to-absolute-ignite-script"
+  local runtime_package_link="$PROJECT_DIRECTORY/build/runtime-package"
+  local execution_script_symlink="$PROJECT_DIRECTORY/build/release/execution-script-symlink"
 
   nix \
     --extra-experimental-features 'nix-command flakes' \
     build \
     --no-update-lock-file \
-    --out-link "$ignite_symlink" \
+    --out-link "$runtime_package_link" \
     "$PROJECT_DIRECTORY#runtime"
 
-  [[ -f "$ignite_symlink/bin/ignite" && -x "$ignite_symlink/bin/ignite" ]] ||
+  local execution_script
+  execution_script="$(readlink -f -- "$runtime_package_link")/bin/ignite"
+  [[ -f "$execution_script" && -x "$execution_script" ]] ||
     fail "The runtime package must provide executable bin/ignite."
 
   nix \
@@ -155,7 +158,9 @@ build_and_copy_runtime() {
     copy \
     --no-check-sigs \
     --to "$PROJECT_DIRECTORY/build/release/runtime-artifacts" \
-    "$ignite_symlink"
+    "$runtime_package_link"
+
+  ln -s -- "$execution_script" "$execution_script_symlink"
 }
 
 copy_dockerfile() {
